@@ -52,8 +52,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Rx = __webpack_require__(2)
-	var Observable = Rx.Observable
+	const Rx = __webpack_require__(2)
+	const Observable = Rx.Observable
+	const greets = ["Hello","Hi","Good Morning!","Good Evening!"]
 	Observable.fromEvent(document.getElementById('b1'),'click').subscribe(()=>{
 	    console.log("clicked")
 	})
@@ -67,6 +68,16 @@
 	    },2000)
 	})
 	helloObservable.subscribe((data)=>{
+	    console.log(data)
+	})
+	Observable.interval(3000).map((count)=>{return greets[count%greets.length]}).subscribe((greetMsg)=>{
+	    console.log(greetMsg)
+	})
+	Observable.fromEvent(document.getElementById('inp'),'input').filter((event)=>{
+	    return event.target.value.length>=5
+	}).map((event)=>{
+	    return event.target.value
+	}).subscribe((data)=>{
 	    console.log(data)
 	})
 
