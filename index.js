@@ -7,3 +7,11 @@ const numbers = [1,2,3,4,5,6,7,8,9,10]
 Observable.interval(1000).map((num)=>numbers[num%10]*10).subscribe((num)=>{
     console.log(`the output is ${num}`)
 })
+const helloObservable = Observable.create((observer)=>{
+    setInterval(()=>{
+        observer.next("hello")
+    },2000)
+})
+helloObservable.subscribe((data)=>{
+    console.log(data)
+})
